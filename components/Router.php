@@ -4,8 +4,8 @@ class Router
 {
 	private $routes;
 	
-	CONST PATH_ROUTERS		= ROOT . '/application/config/routers.php';
-	CONST PATH_CONTROLLERS	= ROOT . '/application/controllers/';
+	CONST PATH_ROUTERS		= URL_APP . 'config/routers.php';
+	CONST PATH_CONTROLLERS	= URL_APP . 'controllers/';
 	
 	public function __construct()
 	{
@@ -17,17 +17,22 @@ class Router
 		$url = $this->getReguestUrl();
 		foreach ($this->routes as $urlKeyPattern => $urlPath) {
 			if (preg_match('~' . $urlKeyPattern . '~', $url)) {
-				$segments = explode('/', $urlPath);
+				$internalRoute = preg_replace('~[/]?' . $urlKeyPattern . '~', $urlPath, $url);
+				$segments = explode('/', $internalRoute);
 				$controllerName = ucfirst(array_shift($segments)) . 'Controller';
-				$actionName = 'action' . ucfirst(array_shift($segments));
 				
+				$actionName = 'action' . ucfirst(array_shift($segments));
+				$params = $segments;
 				$controllerFile = self::PATH_CONTROLLERS . $controllerName . '.php';
+				
 				if (file_exists($controllerFile)) {
 					include_once $controllerFile;
 				}
 				
 				$controller = new $controllerName;
-				$result = $controller->$actionName();
+				
+				$result = call_user_func_array([$controller, $actionName], $params);
+				
 				if ($result != null) {
 					break;
 				}
