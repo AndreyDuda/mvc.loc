@@ -13,20 +13,20 @@ class News
 	 * @ORM\Column(type="integer")
 	 * @ORM\GeneratedValue()
 	 */
-	protected $id;
+	public $id;
 	
 	/**
 	 * @ORM\Column(type="string")
 	 */
-	protected $title;
+	public $title;
 	
 	/**
 	 * @ORM\Column(type="string")
 	 */
-	protected $short_content;
+	public $short_content;
 	
 	/**
 	 * @ORM\Column(type="datetime")
 	 */
-	protected $date;
+	public $date;
 }
