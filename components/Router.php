@@ -1,6 +1,6 @@
 <?php
 
-namespace framework\application\controllers;
+namespace framework\components;
 
 class Router
 {
@@ -30,7 +30,7 @@ class Router
 				if (file_exists($controllerFile)) {
 					include_once $controllerFile;
 				}
-				$controller = '\framework\application\controllers' . trim('\ ') . $controllerName;
+				$controller = '\framework\application\controllers\\' . $controllerName;
 				$controller = new $controller;
 				
 				$result = call_user_func_array([$controller, $actionName], $params);
