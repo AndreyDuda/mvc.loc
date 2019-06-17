@@ -4,6 +4,9 @@
 	"symfony/yaml": "2.*"
   },
   "autoload": {
-	"psr-0": {"": "src/"}
+	"psr-0": {"": "src/"},
+	"psr-4": {
+	  "framework\\": ""
+	}
   }
 }

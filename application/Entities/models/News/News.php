@@ -1,6 +1,8 @@
 <?php
 
-include_once ROOT . '/components/Connection.php';
+namespace framework\application\Entities\models\News;
+
+use framework\components\Connection;
 
 class News
 {

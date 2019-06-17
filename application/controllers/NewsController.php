@@ -1,6 +1,8 @@
 <?php
 
-include_once URL_APP . 'Entities/models/News/News.php';
+namespace framework\application\controllers;
+
+use framework\application\Entities\models\News\News;
 
 class NewsController
 {

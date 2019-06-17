@@ -1,5 +1,9 @@
 <?php
 
+namespace framework\components;
+
+use PDO;
+
 class Connection
 {
 	/** @var array|bool  */

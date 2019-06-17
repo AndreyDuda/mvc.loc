@@ -1,5 +1,6 @@
 <?php
 
+namespace framework\application\controllers;
 
 class ProductController
 {
